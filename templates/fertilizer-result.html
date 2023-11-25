@@ -1,9 +1,40 @@
-{% extends 'layout.html' %} {% block body %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>
+            KHETIFY
+        </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/javascript-plugins-bundle.css') }}" rel="stylesheet">
 
 
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                        <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
+                    </ul>
+                </div>
 
+            </nav>
 
-
+</section>
 
 <div class="container py-2 mx-auto my-50 h-10 " style="margin: 9rem;">
   <div class="row">
@@ -14,4 +45,30 @@
       </div>
   </div>
 </div>
-{% endblock %}
+
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>DISCLAMER::
+        <span class="glowing-text">This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world.
+      <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
+    </div>
+    <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+
+
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <button id="scroll-to-top-button">
+        <i class="fa fa-arrow-up "  aria-hidden="true" alt="Scroll to Top" hidden> </i></button>
+
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+
+</section>
+
+    </body>
+</html>

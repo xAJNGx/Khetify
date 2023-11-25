@@ -1,133 +1,121 @@
-{% extends 'layout.html' %} {% block body %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KHETIFY</title>
+        <style>
+        .sub-header {
+            min-height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+                              url("{{ url_for('static', filename='image/post_7.JPG') }}");
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            color: #fff;
+        }
+        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/ferti.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/javascript-plugins-bundle.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                        <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
+                    </ul>
+                </div>
+                
+            </nav>
+    <div class="text-box">
+        <h1>FERTILIZER RECOMMENDATION</h1>
+        
+    </div><br>
+            <div class="form-container">
+                <form method="POST" action="{{ url_for('fertilizer_recommend') }}">
+                    <div class="form-group">
+                        <label for="Nitrogen"><b>Nitrogen</b></label>
+                        <input type="number" class="form-control" id="Nitrogen" name="nitrogen" placeholder="Enter the value (example: 50)" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="Phosphorous"><b>Phosphorous</b></label>
+                        <input type="number" class="form-control" id="Phosphorous" name="phosphorous" placeholder="Enter the value (example: 50)" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="Pottasium"><b>Potassium</b></label>
+                        <input type="number" class="form-control" id="Potassium" name="potassium" placeholder="Enter the value (example: 50)" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="crop"><b>Crop you want to grow</b></label>
+                        <select name="cropname" class="form-control" id="crop" placeholder="Select a crop" required>
+                            <option selected>Select crop</option>
+                            <option>rice</option>
+                            <option>maize</option>
+                            <option>chickpea</option>
+                            <option>kidneybeans</option>
+                            <option>pigeonpeas</option>
+                            <option>mothbeans</option>
+                            <option>mungbean</option>
+                            <option>blackgram</option>
+                            <option>lentil</option>
+                            <option>pomegranate</option>
+                            <option>banana</option>
+                            <option>mango</option>
+                            <option>grapes</option>
+                            <option>watermelon</option>
+                            <option>muskmelon</option>
+                            <option>apple</option>
+                            <option>orange</option>
+                            <option>papaya</option>
+                            <option>coconut</option>
+                            <option>cotton</option>
+                            <option>jute</option>
+                            <option>coffee</option>
+                        </select>
+                    </div><br>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Predict</button>
+                    </div>
+                </form>
+            </div>
+</section>
 
-<style>
-  html body {
-    background-color: rgb(206, 206, 228);
-  }
-</style>
-<!--Form Section-->
-<br /><br />
-<h2 style="text-align: center; margin: 0px; color: black">
-  <b>Get informed advice on fertilizer based on soil</b>
-</h2>
-<br />
 
-<div
-  style="
-    width: 350px;
-    height: 40rem;
-    margin: 0px auto;
-    color: black;
-    border-radius: 25px;
-    padding: 10px 10px;
-  "
->
-  <form method="POST" action="{{ url_for('fert_recommend') }}">
-    <div class="form-group">
-      <label for="Nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
-      <input
-        type="number"
-        class="form-control"
-        id="Nitrogen"
-        name="nitrogen"
-        placeholder="Enter the value (example:50)"
-        style="font-weight: bold"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="Phosphorous" style="font-size: 17px"
-        ><b>Phosphorous</b></label
-      >
-      <input
-        type="number"
-        class="form-control"
-        id="Phosphorous"
-        name="phosphorous"
-        placeholder="Enter the value (example:50)"
-        style="font-weight: bold"
-        required
-      />
-    </div>
 
-    <div class="form-group">
-      <label for="Pottasium" style="font-size: 17px"><b>Pottasium</b></label>
-      <input
-        type="number"
-        class="form-control"
-        id="Pottasium"
-        name="pottasium"
-        placeholder="Enter the value (example:50)"
-        style="font-weight: bold"
-        required
-      />
-    </div>
-    <!-- <div class="form-group">
-      <label for="ph" style="font-size: 17px"><b>ph level</b></label>
-      <input
-        type="text"
-        class="form-control"
-        id="ph"
-        name="ph"
-        placeholder="Enter the value"
-        style="font-weight: bold"
-        required
-      />
-    </div> -->
-    <div class="form-group">
-      <label for="crop" style="font-size: 17px"
-        ><b>Crop you want to grow</b></label
-      >
-      <select
-        name="cropname"
-        class="form-control"
-        id="crop"
-        placeholder="Select a crop"
-        style="font-weight: bold"
-        required
-      >
-        <option selected>Select crop</option>
-        <option>rice</option>
-        <option>maize</option>
-        <option>chickpea</option>
-        <option>kidneybeans</option>
-        <option>pigeonpeas</option>
-        <option>mothbeans</option>
-        <option>mungbean</option>
-        <option>blackgram</option>
-        <option>lentil</option>
-        <option>pomegranate</option>
-        <option>banana</option>
-        <option>mango</option>
-        <option>grapes</option>
-        <option>watermelon</option>
-        <option>muskmelon</option>
-        <option>apple</option>
-        <option>orange</option>
-        <option>papaya</option>
-        <option>coconut</option>
-        <option>cotton</option>
-        <option>jute</option>
-        <option>coffee</option>
-      </select>
-    </div>
 
-    <div class="d-flex justify-content-center">
-      <button
-        type="submit"
-        class="btn btn-info"
-        style="
-          color: black;
-          font-weight: bold;
-          width: 130px;
-          height: 50px;
-          border-radius: 12px;
-          font-size: 21px;
-        "
-      >
-        Predict
-      </button>
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>DISCLAMER::
+        <span class="glowing-text"> This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world. 
+            <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
     </div>
-  </form>
-</div>
-{% endblock %}
+    <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+
+</section>
+
+
+
+    </body>
+</html>

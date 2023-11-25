@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +5,6 @@
         <title>
             KHETIFY
         </title>
-
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +20,8 @@
             <nav>
                 <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
                 <div class="nav-links">
+                    
+                    
                     <ul>
                         <li><a href="{{ url_for('home') }}">HOME</a></li>
                         <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
@@ -31,19 +31,40 @@
                         <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
                     </ul>
                 </div>
-
+                
             </nav>
 </section>
 
-<div class="container py-2 mx-auto my-50 h-10 " style="margin: 9rem;">
-  <div class="row">
-      <div class="col-sm py-2 py-md-3">
-          <div class="card card-body" style="justify-content: center; background-color:blanchedalmond">
-            <p class="text-center" style="color: black; font-size: 22px;">{{ prediction }}</p>
-          </div>
-      </div>
-  </div>
-</div>
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>PLANT DISEASE DETECTION</h1>
+            <p>Plant disease prediction is a crucial aspect of modern agriculture that uses cutting-edge technologies to foresee and manage potential dangers to crop health.
+                 In order to create predictive models, data from several sources are combined, such as historical disease incidence, soil properties, and weather trends.
+                  These models forecast the likelihood of specific plant diseases in a given area using data analytics and machine learning.</p>
+            <h1>STEP TO USE PLANT DISEASE DETECTION</h1>
+            <ul>
+                <li>sadfasdsadadsasdsaddasddasd</li>
+                <li>asdasdasdasdasdasdasdasddasdd</li>
+                <li>sadfasdsadadsasdsaddasddasd</li>
+                <li>asdasdasdasdasdasdasdasddasdd</li>
+                <li>sadfasdsadadsasdsaddasddasd</li>
+                <li>asdasdasdasdasdasdasdasddasdd</li>
+            </ul>
+            <br>
+
+            <a href="{{ url_for('disease_prediction') }}" class="hero-btn red-btn">Explore now</a>
+        </div> 
+         <div class="about-col">
+        <img src="{{ url_for('static', filename='image/plantd.jpg') }}">
+         </div>
+
+    </div>
+
+
+</section>
+
+
 <section class="footer">
     <a href="{{ url_for('about') }}"><h4>About us</h4></a>
     <p>DISCLAMER::

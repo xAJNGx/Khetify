@@ -1,54 +1,99 @@
-{% extends 'layout.html' %} {% block body %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KHETIFY</title>
+        <style>
+                .sub-header {
+                    min-height: 100vh;
+                    width: 100%;
+                    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url("{{ url_for('static', filename='image/OIP-1.jpg') }}");
+                    background-position: center;
+                    background-size: cover;
+                    text-align: center;
+                    color: #fff;
+                }
+        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/new de.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/javascript-plugins-bundle.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <section class="sub-header">
+            <nav>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">HOME</a></li>
+                        <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                        <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
+                    </ul>
+                </div>
+                
+            </nav>
+    <div class="text-box">
+        <h1>PLANT DISEASE DETECTION   </h1>
+        
+    </div><br>
 
-
-<style>
-  html body {
-    background-color: rgb(206, 206, 228);
-  }
-</style>
-<br /><br />
-  <h2 style="text-align: center; margin: 0px; color: black">
-    <b>Find out which disease has been caught by your plant</b>
-  </h2>
-  <br />
-  <br>
-
-<div style="
-    width: 350px;
-    height: 50rem;
-    margin: 0px auto;
-    color: black;
-    border-radius: 25px;
-    padding: 10px 10px;
-    font-weight: bold;
-  ">
-
-  
-
-
-  <form class="form-signin" method=post enctype=multipart/form-data>
-
+<div class="container">
+<form class="form-signin" method="post" enctype="multipart/form-data">
     <h2 class="h4 mb-3 font-weight-normal"><b>Please Upload The Image</b></h2>
-    <input type="file" name="file" class="form-control-file" id="inputfile" onchange="preview_image(event)" style="font-weight: bold;">
+    <input type="file" name="file" class="form-control-file" id="inputfile" onchange="previewImage(event)" style="font-weight: bold;">
     <br>
     <br>
     <img id="output-image" class="rounded mx-auto d-block" />
+    <br>
+    <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit" style="font-weight: bold;">Predict</button>
-
-
-  </form>
+</form>
 </div>
+<script>
+            function previewImage(event) {
+                var input = event.target;
 
-<script type="text/javascript">
-  function preview_image(event) {
-    var reader = new FileReader();
-    reader.onload = function () {
-      var output = document.getElementById('output-image')
-      output.src = reader.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
-  }
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        document.getElementById('output-image').src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
 </script>
+</section>
 
-</div>
-{% endblock %}
+<section class="footer">
+    <a href="{{ url_for('about') }}"><h4>About us</h4></a>
+    <p>
+        DISCLAIMER::
+        <span class="glowing-text"> This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world. 
+            <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-linkedin" ></i>
+
+    </div>
+    <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <script src="{{ url_for('static', filename='scripts/scrit.js') }}"></script>
+
+</section>
+
+
+
+    </body>
+</html>

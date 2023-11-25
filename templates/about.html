@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +21,8 @@
             <nav>
                 <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
                 <div class="nav-links">
+                    
+                    
                     <ul>
                         <li><a href="{{ url_for('home') }}">HOME</a></li>
                         <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
@@ -31,19 +32,39 @@
                         <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
                     </ul>
                 </div>
-
+                
             </nav>
+   
+            <h1>About Us</h1>
 </section>
 
-<div class="container py-2 mx-auto my-50 h-10 " style="margin: 9rem;">
-  <div class="row">
-      <div class="col-sm py-2 py-md-3">
-          <div class="card card-body" style="justify-content: center; background-color:blanchedalmond">
-            <p class="text-center" style="color: black; font-size: 22px;">{{ prediction }}</p>
-          </div>
-      </div>
-  </div>
-</div>
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>About KHETIFY</h1>
+            <p>Khetify stands as an advanced agricultural platform, delivering farmers valuable data-driven insights to optimize crop management. Utilizing state-of-the-art technology, 
+                Khetify enhances agricultural productivity by offering cutting-edge functionalities like plant disease identification, fertilizer recommendations, and crop yield predictions. 
+                <br><br>
+                
+            Khetify is an innovative agricultural platform that provides farmers with data-driven insights to revolutionize crop management. Khetify provides a number of cutting-edge features, including plant disease diagnosis, fertilizer recommendations, and crop output forecast, by utilizing cutting-edge technologies.
+             By seamlessly integrating data on weather patterns, soil qualities, and historical data, the technology provides farmers with precise projections. They are ultimately able to make more informed decisions about critical matters such as disease control, planting, and fertilizer, which increases agricultural productivity.
+<br><br>
+The platform provides farmers with accurate forecasts by seamlessly incorporating data on weather patterns, soil attributes, and historical information. This enables farmers to 
+                make informed decisions on planting, fertilizing, and disease prevention. 
+                Khetify's user-friendly interface and sophisticated analytics promote sustainable farming practices, ensuring increased yields and healthier crops for a resilient future in agriculture.
+            <br><br>
+            Khetify offers a user-friendly UI that makes navigating easy, in addition to being technologically savvy. Precise projections and support for sustainable farming practices are provided by the platform's advanced analytics. Khetify offers insights that guarantee greater yields, giving farmers a competitive edge.</p>
+            <a href="{{ url_for('home') }}" class="hero-btn red-btn">Explore now</a>
+        </div> 
+        <div class="about-col">
+            <img src="{{ url_for('static', filename='image/harvest.jpg') }}" >
+        </div> 
+    </div>
+
+
+</section>
+
+
 <section class="footer">
     <a href="{{ url_for('about') }}"><h4>About us</h4></a>
     <p>DISCLAMER::
@@ -70,3 +91,7 @@
 
     </body>
 </html>
+
+
+
+

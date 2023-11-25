@@ -136,11 +136,6 @@ disease_dic = {
         
         <br/>3. Use protective fungicide sprays. Pesticides registered to protect the developing new growth include copper, captan, ferbam, mancozeb, maneb, triadimefon, and ziram. Important spraying times are as new shoots are 2 to 4 inches long, and again when they are 10 to 15 inches long, just before bloom, just after bloom, and when the fruit has set.""",
 
-    'Corn_(maize)___healthy': """ <b>Crop</b>: Corn(maize) <br/>Disease: No disease<br/>
-
-        <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
-
-
     'Grape___Esca_(Black_Measles)': """ <b>Crop</b>: Grape <br/>Disease: Black Measles<br/>
         <br/> Cause of disease:
 
@@ -183,9 +178,6 @@ disease_dic = {
     'Corn_(maize)___healthy': """ <b>Crop</b>: Corn(maize) <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
-
-
-    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': """<b> Crop</b> : Grape <br/> Disease: Leaf Spot""",
 
 
     'Orange___Haunglongbing_(Citrus_greening)': """ <b>Crop</b>: Orange <br/>Disease: Citrus Greening<br/>

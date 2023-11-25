@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +5,6 @@
         <title>
             KHETIFY
         </title>
-
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,12 +14,15 @@
         <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ url_for('static', filename='css/javascript-plugins-bundle.css') }}" rel="stylesheet">
 
+
     </head>
     <body>
         <section class="sub-header">
             <nav>
                 <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
                 <div class="nav-links">
+                    
+                    
                     <ul>
                         <li><a href="{{ url_for('home') }}">HOME</a></li>
                         <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
@@ -31,19 +32,39 @@
                         <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
                     </ul>
                 </div>
-
+                
             </nav>
 </section>
 
-<div class="container py-2 mx-auto my-50 h-10 " style="margin: 9rem;">
-  <div class="row">
-      <div class="col-sm py-2 py-md-3">
-          <div class="card card-body" style="justify-content: center; background-color:blanchedalmond">
-            <p class="text-center" style="color: black; font-size: 22px;">{{ prediction }}</p>
-          </div>
-      </div>
-  </div>
-</div>
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>FERTILIZER RECOMMENDATION</h1>
+            <p>Fertilizer recommendation systems use crop and soil data to propose the right amount of nutrients for a given field. These devices assist farmers in applying the appropriate type and quantity of fertilizers by evaluating crop nutrient requirements and soil composition. Applying fertilizer precisely reduces extra nitrogen runoff, which minimizes environmental effect while optimizing crop productivity.</p>
+            <h1>STEP TO USE FERTILIZER RECOMMENDATION</h1>
+            <ul>
+                <li>sadfasdsadadsasdsaddasddasd</li>
+                <li>asdasdasdasdasdasdasdasddasdd</li>
+                <li>sadfasdsadadsasdsaddasddasd</li>
+                <li>asdasdasdasdasdasdasdasddasdd</li>
+                <li>sadfasdsadadsasdsaddasddasd</li>
+                <li>asdasdasdasdasdasdasdasddasdd</li>
+            </ul>
+            <br>
+            <a href="{{ url_for('fertilizer_recommendation') }}" class="hero-btn red-btn">Exploer now</a>
+        </div> 
+        <div class="about-col">
+            <img src="{{ url_for('static', filename='image/fertilizing.jpg') }}" >
+        </div> 
+    </div>
+
+
+</section>
+
+
+
+
+
 <section class="footer">
     <a href="{{ url_for('about') }}"><h4>About us</h4></a>
     <p>DISCLAMER::
