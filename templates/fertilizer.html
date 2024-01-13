@@ -35,7 +35,8 @@
                         <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
                         <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
                         <li><a href="{{ url_for('about') }}">ABOUT</a></li>
-                        <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
+                        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+
                     </ul>
                 </div>
                 
@@ -47,15 +48,15 @@
             <div class="form-container">
                 <form method="POST" action="{{ url_for('fertilizer_recommend') }}">
                     <div class="form-group">
-                        <label for="Nitrogen"><b>Nitrogen</b></label>
+                        <label for="Nitrogen"><b>Nitrogen(N)</b></label>
                         <input type="number" class="form-control" id="Nitrogen" name="nitrogen" placeholder="Enter the value (example: 50)" required>
                     </div><br>
                     <div class="form-group">
-                        <label for="Phosphorous"><b>Phosphorous</b></label>
+                        <label for="Phosphorous"><b>Phosphorous(P)</b></label>
                         <input type="number" class="form-control" id="Phosphorous" name="phosphorous" placeholder="Enter the value (example: 50)" required>
                     </div><br>
                     <div class="form-group">
-                        <label for="Pottasium"><b>Potassium</b></label>
+                        <label for="Pottasium"><b>Potassium(K)</b></label>
                         <input type="number" class="form-control" id="Potassium" name="potassium" placeholder="Enter the value (example: 50)" required>
                     </div><br>
                     <div class="form-group">

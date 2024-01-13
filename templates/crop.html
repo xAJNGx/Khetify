@@ -35,7 +35,8 @@
                         <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
                         <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
                         <li><a href="{{ url_for('about') }}">ABOUT</a></li>
-                        <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
+                        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+
                     </ul>
                 </div>
             </nav>
@@ -52,7 +53,7 @@
                     <option selected>Select District</option>
                     <option value="Taplejung">Taplejung</option>
                     <option value="Panchthar">Panchthar</option> 
-                    <option value="Ilam">Ilam</option>
+                    <option value="Illam">Illam</option>
                     <option value="Jhapa">Jhapa</option>
                     <option value="Sankhuwasabha">Sankhuwasabha</option>
                     <option value="Bhojpur">Bhojpur</option>
@@ -128,25 +129,24 @@
                     <br>
                 </select><br>
             </div>
-        <script>
-            const options = document.getElementById('District').options;
-            const sortedOptions = Array.from(options).sort((a, b) => a.text.localeCompare(b.text));
-            document.getElementById('District').innerHTML = '';
-            sortedOptions.forEach(option => document.getElementById('District').appendChild(option));
-          </script><br>
-          <div class="form-group">
-            <label for="crop"><b>Crop Name</b></label>
-            <select name="Cropname" class="form-control" id="crop" placeholder="Select a crop" required style="padding: 10px 42px;">
+             <script>
+                const options = document.getElementById('District').options;
+                const sortedOptions = Array.from(options).sort((a, b) => a.text.localeCompare(b.text));
+                document.getElementById('District').innerHTML = '';
+                sortedOptions.forEach(option => document.getElementById('District').appendChild(option));
+            </script><br>
+            <div class="form-group">
+                <label for="crop"><b>Crop Name</b></label>
+                <select name="Cropname" class="form-control" id="crop" placeholder="Select a crop" required style="padding: 10px 42px;">
                 <option selected>Select crop</option>
-                <option value="Barly">Barly</option>
-                <option value="Buck Wheat">Buck Wheat</option>
-                <option value="Milet">Milet</option>
-                <option value="Maize">Maize</option>
                 <option value="Paddy">Paddy</option>
                 <option value="Wheat">Wheat</option>
-                
-            </select>
-        </div><br>
+                <option value="Maize">Maize</option>
+                <option value="Millet">Millet</option>
+                <option value="Barley">Barley</option>
+                <option value="Buckwheat">Buckwheat</option>
+                </select>
+            </div><br>
             
             <div class="form-group">
                 <label for="Production"><b>Production</b></label>
@@ -162,7 +162,7 @@
             </div><br>
           <br>
             <div class="d-flex justify-content-center">
-                <input type="submit" class="btn btn-info" value="Submit">Predict</input>
+                <input type="submit" class="btn btn-info" value="Predict"></input>
             </div>
         </form>
     </div>

@@ -26,8 +26,9 @@
                         <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
                         <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
                         <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
-                        <li><a href="/templates/about.html">ABOUT</a></li>
-                        <li><a href="/templates/index.html#con">CONTACT</a></li>
+                        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+
                     </ul>
                 </div>
 
@@ -38,8 +39,8 @@
 <div class="container py-2 mx-auto my-50 h-10 " style="margin: 12rem;">
   <div class="row">
       <div class="col-sm py-2 py-md-3">
-          <div class="card card-body" style="justify-content: center;">
-               <h1 class="text-center"><b>THE PREDICTED CROP YIELD IS <i>{{ prediction }} </i></b></h1>
+          <div class="card card-body" style="justify-content: center;background-color: rgba(40, 177, 93, 0.8); ">
+               <h1 class="text-center"><b>THE PREDICTED CROP YIELD IS <i>{{ prediction }} KG/HA </i></b></h1>
           </div>
       </div>
   </div>

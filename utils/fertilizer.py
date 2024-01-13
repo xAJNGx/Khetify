@@ -53,5 +53,8 @@ fertilizer_dic = {
     <br/>2. Try kelp meal or seaweed
     <br/>3. Try Sul-Po-Mag
     <br/>4. Bury banana peels an inch below the soil's surface
-    <br/>5. Use Potash fertilizers since they contain high values potassium"""
+    <br/>5. Use Potash fertilizers since they contain high values potassium""",
+
+    'Perfect': """Your soil is already efficient for harvesting.
+    <br/>Hence, There is no need of any enhancement in your soil. However if you want you can always water the crops in time."""
 }

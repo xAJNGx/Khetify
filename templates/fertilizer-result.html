@@ -28,7 +28,8 @@
                         <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
                         <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
                         <li><a href="{{ url_for('about') }}">ABOUT</a></li>
-                        <li><a href="{{ url_for('home') }}#con">CONTACT</a></li>
+                        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+
                     </ul>
                 </div>
 
@@ -39,7 +40,7 @@
 <div class="container py-2 mx-auto my-50 h-10 " style="margin: 9rem;">
   <div class="row">
       <div class="col-sm py-2 py-md-3">
-          <div class="card card-body" style="justify-content: center; background-color:blanchedalmond">
+          <div class="card card-body" style="justify-content: center; background-color: rgba(40, 177, 93, 0.8);">
                <p class="text-center" style="color: black; font-size: 20px;">{{ recommendation }}</p>
           </div>
       </div>

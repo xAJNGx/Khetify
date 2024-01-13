@@ -73,12 +73,18 @@ body {
     left:50%;
     transform: translate(-50%,-50%);
 }
+.d-flex.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
+
 .btn{
     display: inline-block;
     text-decoration: none;
     color: #fff;
     border: 1px solid #fff;
     padding: 12px 13px;
+    right: 90%;
     font-size: 23px;
     background: transparent;
     position: relative;
