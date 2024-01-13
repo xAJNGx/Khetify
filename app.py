@@ -62,6 +62,7 @@ disease_model.load_state_dict(torch.load(
 ))
 disease_model.eval()
 
+#function for predicting image
 def predict_image(img,model=disease_model):
         transform = transforms.Compose([
             transforms.Resize(256),
@@ -97,6 +98,7 @@ app.config['SQLALCHEMY_ECHO'] = True  # Print SQL queries to the console for deb
 
 db = SQLAlchemy(app)
 
+#data model for user
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     __table_args__ = {'schema': 'khetify'}
@@ -109,8 +111,7 @@ class User(UserMixin, db.Model):
     def get_id(self):
         return str(self.uid)
 
-
-
+#data model for admin
 class Admin(UserMixin, db.Model):
     __tablename__ = 'admins'
     __table_args__ = {'schema': 'khetify'}
@@ -124,7 +125,7 @@ class Admin(UserMixin, db.Model):
         return str(self.adminid)
 
 
-
+#class for registrationform
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -136,6 +137,7 @@ class RegistrationForm(FlaskForm):
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'  # Specify the login route
 
+#userlogin defination
 @login_manager.user_loader
 def load_user(user_id):
     user_id = int(user_id)
@@ -155,6 +157,7 @@ def load_user(user_id):
     print(f"User with ID {user_id} not found.")
     return None
 
+#route for userlogin
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -172,6 +175,7 @@ def login():
 
     return render_template('login.html')
 
+#route for adminlogin
 @app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -194,7 +198,7 @@ def admin_login():
 
     return render_template('admin-login.html')
 
-
+#route for registration
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -213,6 +217,8 @@ def register():
     # Form is not valid or not submitted yet, render registration template with form
     return render_template('registration.html', title='Register', form=form)
 
+
+#route for admin dashboard
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
@@ -229,7 +235,7 @@ def admin_dashboard():
         return redirect(url_for('login'))
 
 
-
+#route for deleting user
 @app.route('/admin/delete_user/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 def delete_user(user_id):
@@ -320,7 +326,6 @@ def crop_prediction():
         return render_template('crop-result.html', prediction=final_prediction, title=title)
 
 #render fertilizer recommendation result page
-
 @ app.route('/fertilizer-recommend', methods=['POST'])
 def fertilizer_recommend():
     title = 'Khetify - Fertilizer Suggestion'

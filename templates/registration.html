@@ -88,39 +88,7 @@
                         <p>Already have an account! <a href="{{ url_for('login') }}" class="register-link">Login!</a></p>
                     </div>
                 </form>
-                <!-- <form method="post">
-                    <div class="input-box">
-                        <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                        <input type="text" name="username" required>
-                        <label for="username">Username</label>
-                    </div>
 
-                    <div class="input-box">
-                        <span class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                        <input type="text" name="email" required>
-                        <label for="email">Email</label>
-                    </div>
-
-                    <div class="input-box">
-                        <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                        <input type="password" name="password" required>
-                        <label for="password">Password</label>
-
-                    </div>
-
-                        <div class="input-box">
-                            <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                            <input type="password" name="confirm_password" required>
-                            <label for="confirm_password">Confirm Password</label>
-                        </div>
-
-
-
-                    <button class="hero-btn" style="font-size: 1em; width: 100%;" type="submit">Register</button>
-                    <div style="font-size: .5em;" class="login-register">
-                        <p>Already have an account! <a href="{{ url_for('login') }}" class="register-link">Login!</a></p>
-                    </div>
-                </form> -->
                  {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         <ul class="flashes">
