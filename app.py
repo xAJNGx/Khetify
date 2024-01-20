@@ -90,6 +90,7 @@ with open('models/best_model.pkl', 'rb') as model_file, open('models/preprocesso
 
 app = Flask(__name__, static_url_path='/static')
 
+app.config['SECRET_KEY'] = 'AJNG'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/khetify'
 
 # Additional configurations (optional)
