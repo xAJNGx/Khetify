@@ -136,7 +136,7 @@ class RegistrationForm(FlaskForm):
 
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'  # Specify the login route
+login_manager.login_view = 'home'  # Specify the login route
 
 #userlogin defination
 @login_manager.user_loader
@@ -251,7 +251,6 @@ def delete_user(user_id):
 
 # render Homepage
 @app.route('/')
-@login_required
 def home():
     title = 'Khetify - Home'
     return render_template('index.html',title=title)
@@ -273,25 +272,21 @@ def fertilizer_recommendation():
 
 #render about page
 @app.route('/about')
-@login_required
 def about():
     return render_template('about.html')
 
 #render aboutcrop
 @app.route('/about_crop')
-@login_required
 def about_crop():
     return render_template('about-crop.html')
 
 #render aboutfer
 @app.route('/about_fer')
-@login_required
 def about_fer():
     return render_template('about-fer.html')
 
 #render aboutplant
 @app.route('/about_plant')
-@login_required
 def about_plant():
     return render_template('about-plant.html')
 

@@ -17,21 +17,33 @@
     <body>
         <section class="sub-header">
             <nav>
-                <a href="/templates/index.html"><img src="/static/image/logo.png"></a>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
                 <div class="nav-links">
-
-
                     <ul>
                         <li><a href="{{ url_for('home') }}">HOME</a></li>
-                        <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
-                        <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
-                        <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">PLANT DISEASE DETECTION</a></li>
+                        {% endif %}
                         <li><a href="{{ url_for('about') }}">ABOUT</a></li>
-                        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
-
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER/a></li>
+                         {% endif %}
                     </ul>
                 </div>
-
             </nav>
 
 </section>
@@ -59,7 +71,7 @@
         <i class="fa fa-linkedin" ></i>
 
     </div>
-    <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+    <p>Made by <i class="fa fa-heart-o" ></i>  KHETIFY-TEAM</p>
 
     <button id="dark-mode-toggle">Dark Mode</button>
     <button id="scroll-to-top-button">

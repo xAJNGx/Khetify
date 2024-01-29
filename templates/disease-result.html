@@ -12,9 +12,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ url_for('static', filename='css/javascript-plugins-bundle.css') }}" rel="stylesheet">
 
     </head>
     <body>
@@ -24,15 +21,29 @@
                 <div class="nav-links">
                     <ul>
                         <li><a href="{{ url_for('home') }}">HOME</a></li>
-                        <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
-                        <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
-                        <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('crop_predict')}}">CROP PREDICTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">CROP PREDICTION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('fertilizer_recommendation')}}">FERTILIZER RECOMMENDATION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">FERTILIZER RECOMMENDATION</a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('disease_prediction') }}">PLANT DISEASE DETECTION</a></li>
+                        {% else %}
+                           <li><a href="{{ url_for('login') }}">PLANT DISEASE DETECTION</a></li>
+                        {% endif %}
                         <li><a href="{{ url_for('about') }}">ABOUT</a></li>
-                        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
-
+                         {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+                         {% else %}
+                               <li><a href="{{ url_for('login') }}">LOGIN/REGISTER/a></li>
+                         {% endif %}
                     </ul>
                 </div>
-
             </nav>
 </section>
 
@@ -58,7 +69,7 @@
         <i class="fa fa-linkedin" ></i>
 
     </div>
-    <p>Made by <i class="fa fa-heart-o" ></i> CSIT-7</p>
+    <p>Made by <i class="fa fa-heart-o" ></i>  KHETIFY-TEAM</p>
 
 
     <button id="dark-mode-toggle">Dark Mode</button>
