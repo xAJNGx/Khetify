@@ -48,6 +48,25 @@ body {
     left:50%;
     transform: translate(-50%,-50%);
 }
+d-flex.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
+.form-container input,
+.form-container select {
+    color: white;
+    text-align: justify;
+    width: 195px;
+    padding: 10px !important;
+    border: 1px solid #fff;
+   
+}
+#crop {
+    width: 215px;
+}
+.form-group input::placeholder {
+    color: #ffffff; 
+}
 .btn{
     display: inline-block;
     text-decoration: none;
