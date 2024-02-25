@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from utils.disease import disease_dic
+from utils.multipleregressionmodel import MultipleLinearRegression
 from utils.fertilizer import fertilizer_dic
 from markupsafe import Markup
 import numpy as np
@@ -62,30 +63,34 @@ disease_model.load_state_dict(torch.load(
 ))
 disease_model.eval()
 
-#function for predicting image
-def predict_image(img,model=disease_model):
-        transform = transforms.Compose([
-            transforms.Resize(256),
-            transforms.ToTensor(),
-        ])
 
-        image= Image.open(io.BytesIO(img))
-        img_t = transform(image)
-        img_u = torch.unsqueeze(img_t,0)
+# function for predicting image
+def predict_image(img, model=disease_model):
+    transform = transforms.Compose([
+        transforms.Resize(256),
+        transforms.ToTensor(),
+    ])
 
-        #now  we get prediciton from model
-        yb= model(img_u)
-        _,preds = torch.max(yb,dim=1)
-        prediction = disease_classes[preds[0].item()]
+    image = Image.open(io.BytesIO(img))
+    img_t = transform(image)
+    img_u = torch.unsqueeze(img_t, 0)
 
-        return  prediction
+    # now  we get prediciton from model
+    yb = model(img_u)
+    _, preds = torch.max(yb, dim=1)
+    prediction = disease_classes[preds[0].item()]
+
+    return prediction
+
 
 # Load the pickled model and preprocessor
-with open('models/best_model.pkl', 'rb') as model_file, open('models/preprocessor.pkl', 'rb') as preprocessor_file:
+with (open('models/best_model.pkl', 'rb') as model_file, open('models/preprocessor.pkl','rb') as preprocessor_file,
+      open('models/implemented_model.pkl', 'rb') as implement_model_file):
     best_model = pickle.load(model_file)
     preprocessor = pickle.load(preprocessor_file)
+    impl_model = pickle.load(implement_model_file)
 
-#------------------------------------------------------#
+# ------------------------------------------------------#
 
 
 app = Flask(__name__, static_url_path='/static')
@@ -99,7 +104,8 @@ app.config['SQLALCHEMY_ECHO'] = True  # Print SQL queries to the console for deb
 
 db = SQLAlchemy(app)
 
-#data model for user
+
+# data model for user
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     __table_args__ = {'schema': 'khetify'}
@@ -112,7 +118,8 @@ class User(UserMixin, db.Model):
     def get_id(self):
         return str(self.uid)
 
-#data model for admin
+
+# data model for admin
 class Admin(UserMixin, db.Model):
     __tablename__ = 'admins'
     __table_args__ = {'schema': 'khetify'}
@@ -126,7 +133,7 @@ class Admin(UserMixin, db.Model):
         return str(self.adminid)
 
 
-#class for registrationform
+# class for registrationform
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -138,7 +145,8 @@ class RegistrationForm(FlaskForm):
 login_manager = LoginManager(app)
 login_manager.login_view = 'home'  # Specify the login route
 
-#userlogin defination
+
+# userlogin defination
 @login_manager.user_loader
 def load_user(user_id):
     user_id = int(user_id)
@@ -158,7 +166,8 @@ def load_user(user_id):
     print(f"User with ID {user_id} not found.")
     return None
 
-#route for userlogin
+
+# route for userlogin
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -176,7 +185,8 @@ def login():
 
     return render_template('login.html')
 
-#route for adminlogin
+
+# route for adminlogin
 @app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -199,7 +209,8 @@ def admin_login():
 
     return render_template('admin-login.html')
 
-#route for registration
+
+# route for registration
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -219,7 +230,7 @@ def register():
     return render_template('registration.html', title='Register', form=form)
 
 
-#route for admin dashboard
+# route for admin dashboard
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
@@ -236,7 +247,7 @@ def admin_dashboard():
         return redirect(url_for('login'))
 
 
-#route for deleting user
+# route for deleting user
 @app.route('/admin/delete_user/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 def delete_user(user_id):
@@ -249,46 +260,54 @@ def delete_user(user_id):
     flash(f'User {user_to_delete.username} has been deleted successfully!', 'success')
     return redirect(url_for('admin_dashboard'))
 
+
 # render Homepage
 @app.route('/')
 def home():
     title = 'Khetify - Home'
-    return render_template('index.html',title=title)
+    return render_template('index.html', title=title)
 
-#render crop yield prediction from page
-@ app.route('/crop')
+
+# render crop yield prediction from page
+@app.route('/crop')
 @login_required
 def crop_predict():
     title = 'Khetify - Crop Yield Prediction'
     return render_template('crop.html', title=title)
 
-#render fertilizer recommendation form page
+
+# render fertilizer recommendation form page
 @app.route('/fertilizer')
 @login_required
 def fertilizer_recommendation():
     title = ' Khelify - Fertilizer Recommendation'
 
-    return render_template('fertilizer.html',title=title)
+    return render_template('fertilizer.html', title=title)
 
-#render about page
+
+# render about page
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-#render aboutcrop
+
+# render aboutcrop
 @app.route('/about_crop')
 def about_crop():
     return render_template('about-crop.html')
 
-#render aboutfer
+
+# render aboutfer
 @app.route('/about_fer')
 def about_fer():
     return render_template('about-fer.html')
 
-#render aboutplant
+
+# render aboutplant
 @app.route('/about_plant')
 def about_plant():
     return render_template('about-plant.html')
+
 
 @app.route('/logout')
 @login_required
@@ -296,12 +315,14 @@ def logout():
     logout_user()
     flash('Logged out successfully!', 'success')
     return redirect(url_for('login'))
-#--------------------------------------------------#
 
-#RENDER PREDICTION PAGES
 
-#render crop yield prediction page
-@ app.route('/crop-prediction', methods=['POST'])
+# --------------------------------------------------#
+
+# RENDER PREDICTION PAGES
+
+# render crop yield prediction page
+@app.route('/crop-prediction', methods=['POST'])
 def crop_prediction():
     title = 'Khetify- Crop Recommendation'
 
@@ -316,13 +337,25 @@ def crop_prediction():
         # Transform the features using the preprocessor
         transformed_features = preprocessor.transform(features)
 
+        selected_model = request.form.get("model")  # Get the selected model from the frontend
+
+        if selected_model == "Multiple_Regression":
+            # Use Linear Regression model
+            model = impl_model
+        elif selected_model == "XGBoost":
+            model = best_model
+        else:
+            # Use default model or handle error
+            model = best_model
+
         # Make the prediction
-        predicted_yield = best_model.predict(transformed_features).reshape(1, -1)
+        predicted_yield = model.predict(transformed_features.toarray()).reshape(1, -1)
         final_prediction = float(predicted_yield[0])
         return render_template('crop-result.html', prediction=final_prediction, title=title)
 
-#render fertilizer recommendation result page
-@ app.route('/fertilizer-recommend', methods=['POST'])
+
+# render fertilizer recommendation result page
+@app.route('/fertilizer-recommend', methods=['POST'])
 def fertilizer_recommend():
     title = 'Khetify - Fertilizer Suggestion'
 
@@ -331,14 +364,10 @@ def fertilizer_recommend():
         N = int(request.form['nitrogen'])
         P = int(request.form['phosphorous'])
         K = int(request.form['potassium'])
-        # ph = float(request.form['ph'])
-
         df = pd.read_csv('data/fertilizer.csv')
-
         nr = df[df['Crop'] == crop_name]['N'].iloc[0]
         pr = df[df['Crop'] == crop_name]['P'].iloc[0]
         kr = df[df['Crop'] == crop_name]['K'].iloc[0]
-
         n = nr - N
         p = pr - P
         k = kr - K
@@ -365,14 +394,12 @@ def fertilizer_recommend():
                 key = "Klow"
             else:
                 key = "Perfect"
-
         response = Markup(str(fertilizer_dic[key]))
-
         return render_template('fertilizer-result.html', recommendation=response, title=title)
 
 
 # render disease prediction result page
-@app.route('/disease', methods=['GET','POST'])
+@app.route('/disease', methods=['GET', 'POST'])
 def disease_prediction():
     title = 'Khetify - Disease Prediction'
 
@@ -381,19 +408,19 @@ def disease_prediction():
             return redirect(request.url)
         file = request.files.get('file')
         if not file:
-            return render_template('disease.html',title=title)
+            return render_template('disease.html', title=title)
         try:
             img = file.read()
 
             prediction = predict_image(img)
 
             prediction = Markup(str(disease_dic[prediction]))
-            return  render_template('disease-result.html', prediction=prediction, title=title)
+            return render_template('disease-result.html', prediction=prediction, title=title)
         except:
             pass
     return render_template('disease.html', title=title)
 
 
-#-------------------------------------------#
+# -------------------------------------------#
 if __name__ == '__main__':
     app.run(debug=False)

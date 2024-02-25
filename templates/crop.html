@@ -54,7 +54,7 @@
             </nav>
     <div class="text-box">
         <h1>CROP YIELD PREDICTION </h1>
-        
+
     </div><br>
 
     <div class="form-container">
@@ -64,7 +64,7 @@
                 <select name="District" class="form-control" id="District" placeholder="Select a District" required>
                     <option selected>Select District</option>
                     <option value="Taplejung">Taplejung</option>
-                    <option value="Panchthar">Panchthar</option> 
+                    <option value="Panchthar">Panchthar</option>
                     <option value="Illam">Illam</option>
                     <option value="Jhapa">Jhapa</option>
                     <option value="Sankhuwasabha">Sankhuwasabha</option>
@@ -159,7 +159,7 @@
                 <option value="Buckwheat">Buckwheat</option>
                 </select>
             </div><br>
-            
+
             <div class="form-group">
                 <label for="Production"><b>Production</b></label>
                 <input type="number" class="form-control" id="Production" name="Production" placeholder="Value in (mt)" required>
@@ -172,6 +172,14 @@
                 <label for="Rainfall"><b>Rainfall (in mm)</b></label>
                 <input type="number" step="0.01" class="form-control" id="Rainfall" name="Rainfall" placeholder="Enter the value" required>
             </div><br>
+            <div class="form-group">
+                <label for="Model"><b>Model for Prediction</b></label>
+                <select name="model" class="form-control" id="model"  required style="padding: 10px 42px;">
+                <option selected>Select the model</option>
+                <option value="XGBoost">XGBoost</option>
+                <option value="Multiple_Regression">Multiple Regression</option>
+                </select>
+            </div><br>
           <br>
             <div class="d-flex justify-content-center">
                 <input type="submit" class="btn btn-info" value="Predict"></input>
@@ -179,7 +187,7 @@
         </form>
     </div>
 </section>
-        
+
 
 
 
@@ -190,7 +198,7 @@
 <section class="footer">
     <a href="{{ url_for('about') }}"><h4>About us</h4></a>
     <p>DISCLAMER::
-        <span class="glowing-text"> This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world. 
+        <span class="glowing-text"> This is a final year college project conducted for educational purposes only.<br>The dataset used in this project may be questionable and may not be representative of the real world.
             <br>Therefore, the predictions and any information provided in this project should be considered inaccurate and should not be relied upon for any real-world decisions.</span>
     </p>
     <div class="icons">
