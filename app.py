@@ -316,8 +316,7 @@ def logout():
     flash('Logged out successfully!', 'success')
     return redirect(url_for('login'))
 
-
-# --------------------------------------------------#
+# -------------------------------------------------------------------------#
 
 # RENDER PREDICTION PAGES
 
