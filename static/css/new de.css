@@ -35,11 +35,31 @@ body {
 .sub-header h1{
     margin-bottom: 146px;
 }
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 13px;
+    font-size: 23px;
+    background: transparent;
+    position: relative;
+    top: 200px;
+    cursor: pointer;
+    
+}
+.btn:hover{
+    border: 1px solid #28b15d;
+    background: #28b15d;
+    transition: 1s;
+}
+
 
 .container{
     max-width: 400px;
     width: 100%;
-    background: #6e6868;
+    height: 40%;
+    background: #698765;
     padding: 30px 13px;
     position: absolute;
     top:40%;
